@@ -12,7 +12,7 @@ while(1):
     
     plt.close()
     fig, ax = plt.subplots(figsize = (12, 7))
-    df = np.array(fArray) # maximum 25, 25
+    df = np.array(fArray) # smooth maximum (25, 25) in my pi
     sns.heatmap(df, cmap ='jet', vmin=-15000)
     
     plt.draw()
