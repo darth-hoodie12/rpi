@@ -1,7 +1,9 @@
 import cv2
-# import minionsRecord as mr
+import matplotlib.pyplot as plt
+import numpy as np
+import minionsModule as mm
+import seaborn as sns
 
-# whereSoundIs = mr.minionsMaxChannel()
 cap=cv2.VideoCapture(0)
 
 print 'width: {0}, height: {1}'.format(cap.get(3),cap.get(4))
@@ -11,7 +13,6 @@ cap.set(4,600)
 _x = 400
 _y = 240
 
-img = cv2.imread('heatmap.png', cv2.IMREAD_COLOR)
 
 while(True):
     ret, frame = cap.read()
@@ -30,8 +31,12 @@ while(True):
         cv2.namedWindow('frame', cv2.WND_PROP_FULLSCREEN)
         cv2.setWindowProperty('frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
         
-        
         cv2.imshow('frame', frame)
+        
+        maxChannel, soundData = mm.minionsMaxChannel()
+        fArray = mm.minionsMakeArray(soundData)
+        
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
